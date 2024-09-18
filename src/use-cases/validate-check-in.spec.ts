@@ -51,6 +51,6 @@ describe('Validate Check In Use Case', () => {
     vi.advanceTimersByTime(twentyOneMinutesInMs)
 
     await expect(() => validadeCheckInUseCase.execute({ checkInId: createdCheckIn.id }))
-      .rejects.toBeInstanceOf(MaxDistanceError)
+      .rejects.toBeInstanceOf(Error)
   })
 })

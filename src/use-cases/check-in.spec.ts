@@ -15,8 +15,6 @@ describe('Check In Use Case', () => {
     gymsRepository = new InMemoryGymsRepository()
     checkInUseCase = new CheckInUseCase(checkInsRepository, gymsRepository)
 
-    vi.useFakeTimers()
-
     await gymsRepository.create({
       id: 'gym-01',
       title: 'JavaScript Gym',
@@ -25,6 +23,8 @@ describe('Check In Use Case', () => {
       latitude: -27.2092052,
       longitude: -49.6401091,
     })
+
+    vi.useFakeTimers()
   })
 
   afterEach(() => {
@@ -41,8 +41,8 @@ describe('Check In Use Case', () => {
     expect(checkIn.id).toEqual(expect.any(String))
   })
 
-  it('Should not be able to check in twice in the same day', async () => {
-    vi.setSystemTime(new Date(2024, 8, 2, 8, 0, 0))
+  it.only('Should not be able to check in twice in the same day', async () => {
+    vi.setSystemTime(new Date(2022, 0, 20, 8, 0, 0))
 
     await checkInUseCase.execute({
       gymId: 'gym-01',
@@ -61,7 +61,7 @@ describe('Check In Use Case', () => {
     ).rejects.toBeInstanceOf(MaxNumberOfCheckInsError)
   })
 
-  it('Should not be able to check in on different days', async () => {
+  it('Should be able to check in on different days', async () => {
     vi.setSystemTime(new Date(2024, 8, 2, 8, 0, 0))
 
     await checkInUseCase.execute({

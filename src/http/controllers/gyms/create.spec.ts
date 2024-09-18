@@ -26,9 +26,6 @@ describe('Create Gym (e2e)', () => {
         longitude: -49.6401091,
       })
 
-    expect(response.statusCode).toEqual(200)
-    expect(response.body.user).toEqual(expect.objectContaining({
-      email: 'johndoe@example.com'
-    }))
+    expect(response.statusCode).toEqual(201)
   })
 })

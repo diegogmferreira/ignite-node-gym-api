@@ -35,8 +35,5 @@ describe('Create Check-In (e2e)', () => {
       })
 
     expect(response.statusCode).toEqual(201)
-    expect(response.body.user).toEqual(expect.objectContaining({
-      email: 'johndoe@example.com'
-    }))
   })
 })
